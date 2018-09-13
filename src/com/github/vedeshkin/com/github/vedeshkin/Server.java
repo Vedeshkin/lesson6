@@ -36,7 +36,7 @@ public class Server {
             serverSocket = new ServerSocket(SERVER_PORT);
             s = serverSocket.accept();
             in = new Scanner(s.getInputStream());
-            out = new PrintWriter(s.getOutputStream());
+            out = new PrintWriter(s.getOutputStream(),true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,12 +57,9 @@ public class Server {
                 while (true) {
                     String message = br.readLine();
                     if (!message.equals(STOP_STRING)) {
-
                         out.println(message);
-                        out.flush();
                     }else {
                         out.println(STOP_STRING);
-                        out.flush();
                         System.exit(0);
                     }
 

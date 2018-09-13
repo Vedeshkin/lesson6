@@ -38,7 +38,7 @@ public class Client {
         try {
             clientSocket = new Socket(HOST,SERVER_PORT);
             in = new Scanner(clientSocket.getInputStream());
-            out = new PrintWriter(clientSocket.getOutputStream());
+            out = new PrintWriter(clientSocket.getOutputStream(),true);
 
         }catch (IOException e){
             e.printStackTrace();
@@ -54,10 +54,8 @@ public class Client {
                     if (!message.equals(STOP_STRING)) {
 
                         out.println(message);
-                        out.flush();
                     }else {
                         out.println(STOP_STRING);
-                        out.flush();
                         System.exit(0);
                     }
 
